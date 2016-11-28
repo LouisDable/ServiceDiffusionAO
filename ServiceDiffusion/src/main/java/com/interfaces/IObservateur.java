@@ -1,12 +1,8 @@
-/**
- * 
- */
+
 package com.interfaces;
 
-/**
- * @author hp
- *
- */
-public interface IObservateur {
+import com.strategies.Diffusion;
 
+public interface IObservateur {
+	public void actualise(Diffusion strategieDiffusion);
 }

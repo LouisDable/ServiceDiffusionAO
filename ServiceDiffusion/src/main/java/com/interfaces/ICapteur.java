@@ -1,5 +1,9 @@
 package com.interfaces;
 
-public interface ICapteur {
+import java.util.ArrayList;
 
+public interface ICapteur {
+	public ArrayList<IObservateur> getObservateur();
+	public Integer getValue();
+	public void tick();
 }
