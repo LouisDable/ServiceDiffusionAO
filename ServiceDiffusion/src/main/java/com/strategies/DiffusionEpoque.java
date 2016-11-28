@@ -1,5 +1,6 @@
 package com.strategies;
 
-public class DiffusionEpoque {
+public class DiffusionEpoque extends Diffusion {
+	
 
 }

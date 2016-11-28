@@ -1,5 +1,5 @@
 package com.strategies;
 
-public class DiffusionSequentielle {
+public class DiffusionSequentielle extends Diffusion{
 
 }
