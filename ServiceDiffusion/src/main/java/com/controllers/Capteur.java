@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import com.interfaces.IAlgoDiffusion;
 import com.interfaces.ICapteur;
 import com.interfaces.IObservateur;
-import com.strategies.Diffusion;
 import com.strategies.DiffusionAtomique;
 import com.strategies.DiffusionEpoque;
 import com.strategies.DiffusionSequentielle;
