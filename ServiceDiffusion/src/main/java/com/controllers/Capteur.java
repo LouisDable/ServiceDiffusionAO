@@ -11,8 +11,7 @@ import com.strategies.DiffusionSequentielle;
 
 public class Capteur implements ICapteur {
 
-	private ArrayList<IObservateur> observateur = null; // Liste des
-														// observateurs
+	private ArrayList<IObservateur> observateur = null; // Liste des observateurs
 	private int valeurDiffuse;
 	private IAlgoDiffusion diffusion;
 
@@ -34,8 +33,7 @@ public class Capteur implements ICapteur {
 			System.out.println("Aucun choix effectué");
 			break;
 		}
-		diffusion.configure(this); // j'enregistre la configuration du capteur
-									// courant (this)
+		diffusion.configure(this); // j'enregistre la configuration du capteur courant (this)
 	}
 
 	public ArrayList<IObservateur> getObservateur() {

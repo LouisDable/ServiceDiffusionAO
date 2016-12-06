@@ -31,7 +31,7 @@ public class VAfficheur extends JFrame {
 			
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setLayout(new FlowLayout());
-		getContentPane().setBackground(new Color(255, 170, 55));
+		getContentPane().setBackground(new Color(240,255,240));
 		
 		initIHM();
 		
