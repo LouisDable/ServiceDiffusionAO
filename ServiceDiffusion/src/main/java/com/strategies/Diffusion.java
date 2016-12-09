@@ -6,25 +6,20 @@ package com.strategies;
 import com.interfaces.IAlgoDiffusion;
 import com.interfaces.ICapteur;
 
-/**
- * @author hp
- *
- */
-public class Diffusion implements IAlgoDiffusion {
 
-	public void configure(ICapteur capteur) {
-		// TODO Auto-generated method stub
+public abstract class Diffusion implements IAlgoDiffusion {
+	ICapteur capteur;
+	int nbObservateur;
+
+	public void configure(ICapteur cpt) {
+		this.capteur=cpt;
+		this.nbObservateur=cpt.getObservateur().size();
 		
 	}
 
-	public void executeDiffusion() {
-		// TODO Auto-generated method stub
-		
-	}
+	abstract public void executeDiffusion();
 
-	public int recupererValeur() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+	abstract public int recupererValeur();
+	
 
 }
