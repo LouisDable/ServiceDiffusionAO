@@ -7,11 +7,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JSeparator;
 import javax.swing.JSlider;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerModel;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.WindowConstants;
 import javax.swing.border.Border;
 import javax.swing.event.ChangeEvent;
@@ -23,15 +29,14 @@ import com.controllers.Demarrage;
 public class VDemarrage extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	JPanel panneauPrincipal, pnlTempo, pnlType, pnlNbaff;
-	JLabel titreLbl, modeLbl, affValeurLbl;
-	JButton valid;
-	JSlider molette, modeSld, nbAffSld;
-	JLabel afficheMolette, affichemodeSld, affichenbaffSld;
-	
-	int tempo = 1000, type = 1, nbAff = 4;
-	
-	
+	private JPanel panneauPrincipal;
+	private JSpinner spinTick;
+	private JComboBox comboBox;
+	private JSpinner spinAff;
+	private JButton btnValider;
+	public static JLabel lblCapteur = new JLabel("Valeur du capteur : ");
+	public static int test = 0;
+	private int tempo = 1000, type = 1, nbAff = 3;
 	
 	Demarrage controleur;
 	
@@ -53,9 +58,10 @@ public class VDemarrage extends JFrame {
 		
 		pack();
 		setLocation(150, 150);
-		Dimension tailleFen = new Dimension(350, 350);
+		Dimension tailleFen = new Dimension(300, 300);
 		setMinimumSize(tailleFen);
 		setSize(tailleFen);
+		setLocationRelativeTo(null) ;
 		setResizable(false);
 		setVisible(true);
 		
@@ -73,144 +79,84 @@ public class VDemarrage extends JFrame {
 		
 		panneauPrincipal = new JPanel();
 		Border bordure = BorderFactory.createTitledBorder(
-						BorderFactory.createLineBorder(Color.GRAY, 2), "Paramètres de l'appli OBSERVER");
+						BorderFactory.createLineBorder(Color.GRAY, 2), "Setting");
 		panneauPrincipal.setBorder(bordure);
-		panneauPrincipal.setLayout(new BoxLayout(panneauPrincipal, BoxLayout.Y_AXIS));
-		panneauPrincipal.setSize(300, 300);
+		panneauPrincipal.setLayout(null);
+		panneauPrincipal.setSize(270, 250);
 		panneauPrincipal.setPreferredSize(panneauPrincipal.getSize());
 		panneauPrincipal.setBackground(getContentPane().getBackground());
 		
+		// TICK HORLOGE
+		JLabel lblTickHorloge = new JLabel("Tick Horloge");
+		lblTickHorloge.setBounds(10, 42, 72, 14);
+		panneauPrincipal.add(lblTickHorloge);
 		
-		pnlTempo = new JPanel();
-		Border bordureTempo = BorderFactory.createTitledBorder(
-						BorderFactory.createLineBorder(Color.BLACK, 2), "Tempo horloge en ms");
-		pnlTempo.setBorder(bordureTempo);
-		pnlTempo.setLayout(new BoxLayout(pnlTempo, BoxLayout.Y_AXIS));
-		pnlTempo.setSize(300, 70);
-		pnlTempo.setPreferredSize(pnlTempo.getSize());
-		pnlTempo.setBackground(getContentPane().getBackground());
+		SpinnerModel sm = new SpinnerNumberModel(1000, 1000, 9000, 1000);
+		spinTick = new JSpinner(sm);
+		spinTick.setBounds(100, 42, 50, 20);
+		panneauPrincipal.add(spinTick);
 		
-		molette = new JSlider();
-		molette.setMaximum(10000);
-		molette.setMinimum(1000);
-		molette.setValue(1000);
+		// ALGO DE DIFFUSION
+		JLabel lblAlgorithme = new JLabel("Diffusion");
+		lblAlgorithme.setBounds(10, 83, 60, 14);
+		panneauPrincipal.add(lblAlgorithme);
+		comboBox = new JComboBox();
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Atomique", "Sequentielle", "Epoque"}));
+		comboBox.setBounds(100, 80, 110, 20);
+		panneauPrincipal.add(comboBox);
 		
-		afficheMolette = new JLabel(String.valueOf(molette.getValue()));
-
-		molette.setBackground(getContentPane().getBackground());
-		molette.addChangeListener(new ChangeListener() {
-			
-			public void stateChanged(ChangeEvent arg0) {
-				
-				tempo = molette.getValue();
-				afficheMolette.setText(String.valueOf(molette.getValue()));
-			}
-
-		});
+		//NOMBRE AFFICHEURS
+		JLabel lblNombreAfficheurs = new JLabel("Afficheurs");
+		lblNombreAfficheurs.setBounds(10, 120, 98, 14);
+		panneauPrincipal.add(lblNombreAfficheurs);
+		SpinnerModel sma = new SpinnerNumberModel(4, 2, 6, 1);
+		spinAff = new JSpinner(sma);
+		spinAff.setBounds(100, 117, 60, 20);
+		panneauPrincipal.add(spinAff);
 		
-		pnlTempo.add(molette);		
-		pnlTempo.add(afficheMolette);
+		// BUTON VALIDER
+		btnValider = new JButton("Valider");
+		btnValider.setBounds(170, 170, 78, 23);
+		panneauPrincipal.add(btnValider);
 		
-		panneauPrincipal.add(pnlTempo);
+		// SEPARATEUR
+		JSeparator separator = new JSeparator();
+		separator.setBounds(5,200,260, 45);
+		panneauPrincipal.add(separator);
 		
-		
-		pnlType = new JPanel();
-		Border bordureType = BorderFactory.createTitledBorder(
-						BorderFactory.createLineBorder(Color.BLACK, 2), "Type de stratégie");
-		pnlType.setBorder(bordureType);
-		pnlType.setLayout(new BoxLayout(pnlType, BoxLayout.Y_AXIS));
-		pnlType.setSize(300, 70);
-		pnlType.setPreferredSize(pnlType.getSize());
-		pnlType.setBackground(getContentPane().getBackground());
-		
-		modeSld = new JSlider();
-		modeSld.setMaximum(3);
-		modeSld.setMinimum(1);
-		modeSld.setValue(1);
-		
-		affichemodeSld = new JLabel("ATOMIQUE");
-
-		modeSld.setBackground(getContentPane().getBackground());
-		modeSld.addChangeListener(new ChangeListener() {
-
-			public void stateChanged(ChangeEvent arg0) {
-				
-				type = modeSld.getValue();
-				
-				String txt = "";
-				
-				switch (type) {
-				case 1:
-					txt = "ATOMIQUE";
-					break;
-				case 2:
-					txt = "SEQUENTIELLE";
-					break;
-				case 3:
-					txt = "EPOQUE";
-					break;
-				default:
-					break;
-				}
-				affichemodeSld.setText(txt);
-			}
-
-		});
-		
-		pnlType.add(modeSld);		
-		pnlType.add(affichemodeSld);
-		
-		panneauPrincipal.add(pnlType);
-		
-		pnlNbaff = new JPanel();
-		Border bordureAff = BorderFactory.createTitledBorder(
-						BorderFactory.createLineBorder(Color.BLACK, 2), "Nombre d'"
-								+ "Afficheurs");
-		pnlNbaff.setBorder(bordureAff);
-		pnlNbaff.setLayout(new BoxLayout(pnlNbaff, BoxLayout.Y_AXIS));
-		pnlNbaff.setSize(300, 70);
-		pnlNbaff.setPreferredSize(pnlNbaff.getSize());
-		pnlNbaff.setBackground(getContentPane().getBackground());
-		
-		nbAffSld = new JSlider();
-		nbAffSld.setMaximum(20);
-		nbAffSld.setMinimum(1);
-		nbAffSld.setValue(4);
-		
-		affichenbaffSld = new JLabel(String.valueOf(nbAffSld.getValue()));
-
-		nbAffSld.setBackground(getContentPane().getBackground());
-		
-		nbAffSld.addChangeListener(new ChangeListener() {
-			
-			public void stateChanged(ChangeEvent arg0) {
-				
-				nbAff = nbAffSld.getValue();
-				affichenbaffSld.setText(String.valueOf(nbAffSld.getValue()));
-			}
-
-		});
-		
-		pnlNbaff.add(nbAffSld);		
-		pnlNbaff.add(affichenbaffSld);
-		
-		panneauPrincipal.add(pnlNbaff);
-		
-		
-		
-		valid = new JButton("OK");
-		
-		panneauPrincipal.add(valid);
+		// LABEL HORLOGE
+		lblCapteur.setBounds(60, 210, 200, 14);
+		lblCapteur.setForeground(Color.BLUE);
+		panneauPrincipal.add(lblCapteur);
 		
 		getContentPane().add(panneauPrincipal);
 	}
 
 	private void initACTION(){
 		
-		valid.addActionListener(new ActionListener() {
+		btnValider.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent arg0) {
-
+				
+				tempo = Integer.parseInt(spinTick.getValue().toString());
+				nbAff = Integer.parseInt(spinAff.getValue().toString());
+				
+				switch(comboBox.getSelectedItem().toString()){
+					case "Atomique":
+						type = 1;
+					break;
+					case "Sequentielle":
+						type = 2;
+					break;
+					case "Epoque":
+						type = 3;
+					break;
+					default:
+						System.out.println("Par défaut l'algo Atomique est choisi");
+						type = 1;
+						break;
+				
+				}			
 				controleur.demarrageApplication(nbAff, type, tempo);
 				
 			}

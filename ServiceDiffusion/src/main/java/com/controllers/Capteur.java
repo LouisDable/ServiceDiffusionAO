@@ -3,6 +3,7 @@ package com.controllers;
 import java.util.ArrayList;
 
 import com.interfaces.IAlgoDiffusion;
+import com.vues.*;
 import com.interfaces.ICapteur;
 import com.interfaces.IObservateur;
 import com.strategies.DiffusionAtomique;
@@ -46,7 +47,8 @@ public class Capteur implements ICapteur {
 
 	public void tick() {
 		valeurDiffuse++;
-		System.out.println("CAPTEUR send : " + valeurDiffuse);
+		System.out.println("Valeur Capteur : " + valeurDiffuse);
+		VDemarrage.lblCapteur.setText("Valeur du Capteur : " + valeurDiffuse);
 		notification();
 	}
 
@@ -65,5 +67,4 @@ public class Capteur implements ICapteur {
 		diffusion.executeDiffusion(); // je lance la diffusion choisie
 
 	}
-
 }

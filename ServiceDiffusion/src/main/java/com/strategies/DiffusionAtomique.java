@@ -36,6 +36,7 @@ public class DiffusionAtomique extends Diffusion{
 		}
 		for(Future<Void> future : lesRetours){
 			try {
+				// S'assurer du retour
 				future.get();
 				System.out.println("RETOUR GET FUTURE");
 				System.out.flush();

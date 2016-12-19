@@ -26,7 +26,6 @@ public class Canal implements IObservateur,ICapteur {
 		monAfficheur = new Afficheur(idCanal);
 	}
 	
-
 	public void actualise(Diffusion strategie) {
 		
 		int poolSize = 10; //Nombre de threads dans le pool
