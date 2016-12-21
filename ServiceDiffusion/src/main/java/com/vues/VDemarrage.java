@@ -109,7 +109,7 @@ public class VDemarrage extends JFrame {
 		JLabel lblNombreAfficheurs = new JLabel("Afficheurs");
 		lblNombreAfficheurs.setBounds(10, 120, 98, 14);
 		panneauPrincipal.add(lblNombreAfficheurs);
-		SpinnerModel sma = new SpinnerNumberModel(4, 2, 6, 1);
+		SpinnerModel sma = new SpinnerNumberModel(4, 2, 10, 1);
 		spinAff = new JSpinner(sma);
 		spinAff.setBounds(100, 117, 60, 20);
 		panneauPrincipal.add(spinAff);

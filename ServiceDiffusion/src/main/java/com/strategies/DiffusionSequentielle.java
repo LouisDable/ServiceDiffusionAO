@@ -44,7 +44,7 @@ public class DiffusionSequentielle extends Diffusion{
 	@Override
 	public int recupererValeur() {
 		nbLecture++;
-		lectureComplete = (nbLecture == nbObservateur);		
+		lectureComplete = (nbLecture == nbObservateur);
 		return this.valeurCourante;
 	}
 

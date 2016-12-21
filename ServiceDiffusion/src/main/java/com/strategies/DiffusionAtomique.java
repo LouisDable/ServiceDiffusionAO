@@ -36,9 +36,8 @@ public class DiffusionAtomique extends Diffusion{
 		}
 		for(Future<Void> future : lesRetours){
 			try {
-				// S'assurer du retour
 				future.get();
-				System.out.println("RETOUR GET FUTURE");
+				//System.out.println("RETOUR GET FUTURE");
 				System.out.flush();
 			} catch (InterruptedException e) {
 				e.printStackTrace();
@@ -48,11 +47,9 @@ public class DiffusionAtomique extends Diffusion{
 		}
 	}
 
-
 	@Override
 	public int recupererValeur() {
 		return capteur.getValue();
 	}
-
 	
 }
