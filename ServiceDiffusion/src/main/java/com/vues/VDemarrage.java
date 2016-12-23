@@ -152,7 +152,7 @@ public class VDemarrage extends JFrame {
 						type = 3;
 					break;
 					default:
-						System.out.println("Par défaut l'algo Atomique est choisi");
+						System.out.println("Par défaut, l'algo atomique est choisi");
 						type = 1;
 						break;
 				

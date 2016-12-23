@@ -31,7 +31,7 @@ public class Capteur implements ICapteur {
 			diffusion = new DiffusionEpoque();
 			break;
 		default:
-			System.out.println("Aucun choix effectué");
+			System.out.println("Aucun choix n'a été effectué");
 			break;
 		}
 		diffusion.configure(this); // j'enregistre la configuration du capteur courant (this)
@@ -47,24 +47,25 @@ public class Capteur implements ICapteur {
 
 	public void tick() {
 		valeurDiffuse++;
-		System.out.println("Valeur Capteur : " + valeurDiffuse);
-		VDemarrage.lblCapteur.setText("Valeur du Capteur : " + valeurDiffuse);
+		System.out.println("La Valeur du Capteur est : " + valeurDiffuse);
+		VDemarrage.lblCapteur.setText("Valeur du capteur : " + valeurDiffuse);
 		notification();
 	}
 
 	public void ajouterObservateur(IObservateur obs) {
-		observateur.add(obs); // j'ajout un observateur
-		diffusion.configure(this); // j'enregistre la configuration
+		observateur.add(obs); // on ajout un observateur
+		diffusion.configure(this); // on enregistre la configuration
 
 	}
 
 	public void supprimerObservateur(IObservateur obs) {
-		observateur.remove(obs); // je supprime un observateur
-		diffusion.configure(this); // j'enregistre la configuration
+		observateur.remove(obs); // on supprime un observateur
+		diffusion.configure(this); // on enregistre la configuration
 	}
 
 	public void notification() {
-		diffusion.executeDiffusion(); // je lance la diffusion choisie
+		// on lance la diffusion choisie
+		diffusion.executeDiffusion(); 
 
 	}
 }

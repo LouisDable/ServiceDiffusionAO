@@ -17,10 +17,10 @@ public class Demarrage {
 	
 	public void demarrageApplication( int nbAfficheur, int typeDiffusion, int tick){
 		
-		// Ajoute les observateurs du capteur
+		// Ajoute les différents observateurs du capteur
 		ArrayList<Canal> listeAfficheur = new ArrayList<Canal>();
 		capteur = new Capteur(typeDiffusion);
-		for(int i = 1; i <= nbAfficheur; i++){
+		for(int k = 1; k <= nbAfficheur; k++){
 			Canal canal = new Canal();
 			listeAfficheur.add(canal);
 			capteur.ajouterObservateur(canal);
